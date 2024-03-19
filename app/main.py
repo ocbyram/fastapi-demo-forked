@@ -3,6 +3,8 @@
 from fastapi import FastAPI
 from typing import Optional
 from pydantic import BaseModel
+import json
+import requests
 # import boto3
 
 app = FastAPI()
@@ -13,11 +15,18 @@ app = FastAPI()
 
 # The zone apex is the 'default' page for a URL
 # This will return a simple hello world via GET method.
-
 @app.get("/")  # zone apex
 def zone_apex():
     return {"Hello": "World Wide Web"}
-    
+
+
+
+@app.get("/github/repos{user}")
+def github_user_repos(user):
+    url = "https://api.github.com/users/" + user + "/repos"
+    response = requests.get(url)
+    body = json.loads(response.text)
+    return{"repos": body}
 
 # Endpoints and Methods
 # /blah - endpoint
@@ -32,7 +41,11 @@ def add_me(number_1: int, number_2: int):
 
 # Let's develop a new one:
 
-
+@app.get("/divide/{number_1}/{number_2}")
+def divide_me{number_1: int, number_2: int}
+    div = number_2/number_1
+    return = {"quotient":div}
+    
 ## Parameters
 # Introduce parameter data types and defaults from the Optional library
 @app.get("/items/{item_id}")
