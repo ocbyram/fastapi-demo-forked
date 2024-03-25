@@ -38,6 +38,11 @@ def add_me(number_1: int, number_2: int):
 
 # Let's develop a new one:
 
+# Adding new endpoint for lab 6
+@app.get("/multiply/{number_1}*{number_2}")
+def multiplied{number_1: int, number_2: int}
+    multiplier = number_1*number_2
+    return = {"final number": multiplier}
 
 ## Parameters
 # Introduce parameter data types and defaults from the Optional library
