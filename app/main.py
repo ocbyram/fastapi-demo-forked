@@ -44,6 +44,11 @@ def multiplied{number_1: int, number_2: int}
     multiplier = number_1*number_2
     return = {"final number": multiplier}
 
+#Making another endpoint (lab 6)
+@app.get("divide/{number_1}/{number_2}")
+def divide_me{number_1: int, number_2: int}
+    div = number_2/number_1
+    return = {"quotient":div}
 ## Parameters
 # Introduce parameter data types and defaults from the Optional library
 @app.get("/items/{item_id}")
