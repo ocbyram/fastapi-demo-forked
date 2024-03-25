@@ -18,8 +18,8 @@ def zone_apex():
     
 
 
-@app.get("/github/repos{user}")
-def github_user_repos(user):
+# @app.get("/github/repos{user}")
+# def github_user_repos(user):
     url = "https://api.github.com/users/" + user + "/repos"
     response = requests.get(url)
     body = json.loads(response.text)
@@ -39,16 +39,16 @@ def add_me(number_1: int, number_2: int):
 # Let's develop a new one:
 
 # Adding new endpoint for lab 6
-@app.get("/multiply/{number_1}*{number_2}")
-def multiplied{number_1: int, number_2: int}
-    multiplier = number_1*number_2
-    return = {"final number": multiplier}
+# @app.get("/multiply/{number_1}*{number_2}")
+# def multiplied{number_1: int, number_2: int}
+#   multiplier = number_1*number_2
+#   return = {"final number": multiplier}
 
 #Making another endpoint (lab 6)
-@app.get("divide/{number_1}/{number_2}")
-def divide_me{number_1: int, number_2: int}
-    div = number_2/number_1
-    return = {"quotient":div}
+# @app.get("divide/{number_1}/{number_2}")
+# def divide_me{number_1: int, number_2: int}
+#    div = number_2/number_1
+#    return = {"quotient":div}
 
 ## Parameters
 # Introduce parameter data types and defaults from the Optional library
