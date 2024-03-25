@@ -18,8 +18,8 @@ def zone_apex():
     
 
 
-# @app.get("/github/repos{user}")
-# def github_user_repos(user):
+@app.get("/github/repos{user}")
+def github_user_repos(user):
     url = "https://api.github.com/users/" + user + "/repos"
     response = requests.get(url)
     body = json.loads(response.text)
