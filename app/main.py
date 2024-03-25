@@ -50,8 +50,6 @@ def divide_me{number_1: int, number_2: int}
     div = number_2/number_1
     return = {"quotient":div}
 
-#Adding another endpoint for lab 6
-
 ## Parameters
 # Introduce parameter data types and defaults from the Optional library
 @app.get("/items/{item_id}")
