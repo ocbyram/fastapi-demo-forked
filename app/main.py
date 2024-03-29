@@ -6,11 +6,8 @@ from pydantic import BaseModel
 import boto3
 import os
 import MySQLdb
-from fastapi.staticfiles import staticfiles
 
 app = FastAPI()
-
-app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 DBHOST = os.environ.get('DBHOST')
 DBUSER = os.environ.get('DBUSER')
@@ -23,11 +20,14 @@ DB = "ocb3wv"
 # The zone apex is the 'default' page for a URL
 # This will return a simple hello world via GET method.
 
- @app.get("/")  # zone apex
- def zone_apex():
-    return {"Hello": "World Wide Web"}
+@app.get("/")  # zone apex
+def zone_apex():
+    return {"Hello": "World Wide Web", "repos": "/github/repos{user}"}
     
-
+@app.get("/multiply/{number_1}*{number_2}")
+def multiplied(number_1: int, number_2: int):
+   multiplier = number_1*number_2
+   return {"final number": multiplier}
 
 @app.get("/github/repos{user}")
 def github_user_repos(user):
@@ -42,6 +42,7 @@ def github_user_repos(user):
 # 
 # Simple GET method demo
 # Adds two integers as PATH parameters
+
 @app.get("/add/{number_1}/{number_2}")
 def add_me(number_1: int, number_2: int):
     sum = number_1 + number_2
