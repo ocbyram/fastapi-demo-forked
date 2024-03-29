@@ -25,7 +25,7 @@ DB = "ocb3wv"
 
  @app.get("/")  # zone apex
  def zone_apex():
-    return {"Hello": "World Wide Web", "Test": "/github/repos{user"}
+    return {"Hello": "World Wide Web"}
     
 
 
