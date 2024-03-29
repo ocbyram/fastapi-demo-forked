@@ -22,7 +22,7 @@ DB = "ocb3wv"
 
 @app.get("/")  # zone apex
 def zone_apex():
-    return {"Hello": "World Wide Web", "repos": "/github/repos{user}"}
+    return {"Hello": "World Wide Web", "final number": "/multiply/{number_1}*{number_2}"}
     
 @app.get("/multiply/{number_1}*{number_2}")
 def multiplied(number_1: int, number_2: int):
