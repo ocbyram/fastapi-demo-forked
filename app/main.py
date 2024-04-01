@@ -6,8 +6,13 @@ from pydantic import BaseModel
 import boto3
 import os
 import MySQLdb
+from fastapi.staticfiles import StaticFiles
+
+
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 DBHOST = os.environ.get('DBHOST')
 DBUSER = os.environ.get('DBUSER')
@@ -22,8 +27,28 @@ DB = "ocb3wv"
 
 @app.get("/")  # zone apex
 def zone_apex():
-    return {"Hello": "World Wide Web", "final number": "/multiply/{number_1}*{number_2}"}
-    
+    return {"Hello": "World Wide Web", "Albums": "/albums/{id}"}
+
+
+@app.get("/albums")
+def get_all_albums():
+    db = MySQLdb.connect(host=DBHOST, user=DBUSER, passwd=DBPASS, db=DB)
+    c = db.cursor(MySQLdb.cursors.DictCursor)
+    c.execute("SELECT * FROM albums ORDER BY name")
+    results = c.fetchall()
+    db.close()
+    return results
+
+@app.get("/albums/{id}")
+def get_one_album(id):
+    db = MySQLdb.connect(host=DBHOST, user=DBUSER, passwd=DBPASS, db=DB)
+    c = db.cursor(MySQLdb.cursors.DictCursor)
+    c.execute("SELECT * FROM albums WHERE id=" + id)
+    results = c.fetchall()
+    db.close()
+    return results
+
+
 @app.get("/multiply/{number_1}*{number_2}")
 def multiplied(number_1: int, number_2: int):
    multiplier = number_1*number_2
