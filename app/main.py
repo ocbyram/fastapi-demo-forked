@@ -27,7 +27,7 @@ DB = "ocb3wv"
 
 @app.get("/")  # zone apex
 def zone_apex():
-    return {"Hello": "World Wide Web", "Albums": "/albums/{id}"}
+    return {"Hello": "World Wide Web", "Albums": "/albums", "Albums Specific": "/albums/{id}"}
 
 
 @app.get("/albums")
